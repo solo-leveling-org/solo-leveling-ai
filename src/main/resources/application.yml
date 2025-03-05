@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: solo-leveling-ai
+  ai:
+    openai:
+      api-key: ${CHAT_TOKEN}
+      base-url: https://api.deepseek.com
+      chat:
+        options:
+          model: deepseek-chat
