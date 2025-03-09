@@ -1,6 +1,8 @@
 spring:
   application:
     name: solo-leveling-ai
+  kafka:
+    bootstrap-servers: ${SERVER_HOST}:9092
   ai:
     openai:
       api-key: ${CHAT_TOKEN}

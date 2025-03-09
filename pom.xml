@@ -27,6 +27,7 @@
 	<properties>
 		<java.version>21</java.version>
 		<spring-ai.version>1.0.0-M6</spring-ai.version>
+		<confluent-kafka.version>7.9.0</confluent-kafka.version>
 	</properties>
 
 	<dependencyManagement>
@@ -51,12 +52,49 @@
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.retry</groupId>
+			<artifactId>spring-retry</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+
+		<!-- solo leveling -->
+		<dependency>
+			<groupId>com.sleepkqq</groupId>
+			<artifactId>solo-leveling-task-kafka</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 
 		<!-- utils -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>one.util</groupId>
+			<artifactId>streamex</artifactId>
+			<version>0.8.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.22.1</version>
+		</dependency>
+
+		<!-- kafka -->
+		<dependency>
+			<groupId>io.confluent</groupId>
+			<artifactId>kafka-avro-serializer</artifactId>
+			<version>${confluent-kafka.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.avro</groupId>
+			<artifactId>avro</artifactId>
+			<version>1.12.0</version>
 		</dependency>
 
 		<!-- tests -->
@@ -66,6 +104,13 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>confluent</id>
+			<url>https://packages.confluent.io/maven/</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
