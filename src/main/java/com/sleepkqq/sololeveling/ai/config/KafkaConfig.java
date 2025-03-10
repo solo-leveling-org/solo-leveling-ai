@@ -24,8 +24,14 @@ import org.springframework.kafka.core.ProducerFactory;
 @EnableKafka
 public class KafkaConfig {
 
+  private static final String SCHEMA_REGISTRY_URL_CONFIG = "schema.registry.url";
+  private static final String SPECIFIC_AVRO_READER_CONFIG = "specific.avro.reader";
+
   @Value("${spring.kafka.bootstrap-servers}")
   private String bootstrapServers;
+
+  @Value("${spring.kafka.properties.schema.registry.url}")
+  private String schemaRegistryUrl;
 
   @Bean
   public ProducerFactory<String, SaveTasksEvent> producerFactorySaveTasksEvent() {
@@ -45,7 +51,9 @@ public class KafkaConfig {
         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers,
         ConsumerConfig.GROUP_ID_CONFIG, "task-group",
         ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
-        ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class
+        ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class,
+        SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl,
+        SPECIFIC_AVRO_READER_CONFIG, Boolean.TRUE.toString()
     ));
   }
 
@@ -62,7 +70,8 @@ public class KafkaConfig {
     return new DefaultKafkaProducerFactory<>(Map.of(
         ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers,
         ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class,
-        ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class
+        ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class,
+        SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl
     ));
   }
 }
