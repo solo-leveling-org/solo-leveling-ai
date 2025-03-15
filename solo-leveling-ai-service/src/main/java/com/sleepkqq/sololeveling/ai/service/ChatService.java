@@ -1,9 +1,9 @@
 package com.sleepkqq.sololeveling.ai.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sleepkqq.sololeveling.task.kafka.SaveTask;
-import com.sleepkqq.sololeveling.task.kafka.TaskRarity;
-import com.sleepkqq.sololeveling.task.kafka.TaskTopic;
+import com.sleepkqq.sololeveling.avro.task.SaveTask;
+import com.sleepkqq.sololeveling.avro.task.TaskRarity;
+import com.sleepkqq.sololeveling.avro.task.TaskTopic;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.UserMessage;

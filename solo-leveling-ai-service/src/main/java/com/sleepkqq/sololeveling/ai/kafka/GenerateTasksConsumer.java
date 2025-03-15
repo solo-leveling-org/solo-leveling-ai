@@ -1,8 +1,8 @@
 package com.sleepkqq.sololeveling.ai.kafka;
 
 import com.sleepkqq.sololeveling.ai.service.ChatService;
-import com.sleepkqq.sololeveling.task.kafka.GenerateTasksEvent;
-import com.sleepkqq.sololeveling.task.kafka.SaveTasksEvent;
+import com.sleepkqq.sololeveling.avro.task.GenerateTasksEvent;
+import com.sleepkqq.sololeveling.avro.task.SaveTasksEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
