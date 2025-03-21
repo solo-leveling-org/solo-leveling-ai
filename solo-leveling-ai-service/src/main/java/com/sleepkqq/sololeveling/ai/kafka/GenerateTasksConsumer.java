@@ -26,7 +26,7 @@ public class GenerateTasksConsumer {
         .toList();
 
     log.info("<< Tasks successfully generated | transactionId={}", event.getTransactionId());
-    saveTasksProducer.saveTasks(new SaveTasksEvent(
+    saveTasksProducer.send(new SaveTasksEvent(
         event.getTransactionId(),
         event.getUserId(),
         generatedTasks

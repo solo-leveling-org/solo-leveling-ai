@@ -15,7 +15,7 @@ public class SaveTasksProducer {
 
   private final KafkaTemplate<String, SaveTasksEvent> kafkaTemplate;
 
-  public void saveTasks(SaveTasksEvent event) {
+  public void send(SaveTasksEvent event) {
     kafkaTemplate.send(TOPIC, event);
     log.info("<< Save tasks event sent | transactionId={}", event.getTransactionId());
   }
