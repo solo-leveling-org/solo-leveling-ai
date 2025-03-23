@@ -1,9 +1,8 @@
 package com.sleepkqq.sololeveling.ai.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sleepkqq.sololeveling.avro.task.GenerateTask;
 import com.sleepkqq.sololeveling.avro.task.SaveTask;
-import com.sleepkqq.sololeveling.avro.task.TaskRarity;
-import com.sleepkqq.sololeveling.avro.task.TaskTopic;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.UserMessage;
@@ -13,9 +12,8 @@ import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 import static com.sleepkqq.sololeveling.ai.prompt.TaskPrompts.GENERATE_TASK_PROMPT;
+import static java.lang.String.format;
 
 @Slf4j
 @Service
@@ -33,11 +31,11 @@ public class ChatService {
   }
 
   @Retryable(maxAttempts = 5, backoff = @Backoff(delay = 1000))
-  public SaveTask generateTask(List<TaskTopic> topics, TaskRarity rarity) {
+  public SaveTask generateTask(GenerateTask generateTask) {
     var json = chatClient.prompt(
             new Prompt(
                 new UserMessage(
-                    GENERATE_TASK_PROMPT.formatted(topics, rarity)
+                    format(GENERATE_TASK_PROMPT, generateTask.getTopics(), generateTask.getRarity())
                 ),
                 ChatOptions.builder()
                     .temperature(1.5)
@@ -47,14 +45,15 @@ public class ChatService {
         .call()
         .content();
 
-    return getTaskOrThrow(json, topics, rarity);
+    return getTaskOrThrow(json, generateTask);
   }
 
-  private SaveTask getTaskOrThrow(String json, List<TaskTopic> topics, TaskRarity rarity) {
+  private SaveTask getTaskOrThrow(String json, GenerateTask generateTask) {
     try {
       var task = objectMapper.readValue(json, SaveTask.class);
-      task.setRarity(rarity);
-      task.setTopics(topics);
+      task.setTaskId(generateTask.getTaskId());
+      task.setRarity(generateTask.getRarity());
+      task.setTopics(generateTask.getTopics());
 
       return task;
     } catch (Exception e) {

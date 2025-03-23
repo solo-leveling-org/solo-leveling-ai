@@ -22,13 +22,13 @@ public class GenerateTasksConsumer {
     log.info(">> Start tasks generation | transactionId={}", event.getTransactionId());
     var generatedTasks = StreamEx.of(event.getInputs())
         .parallel()
-        .map(input -> chatService.generateTask(input.getTopics(), input.getRarity()))
+        .map(chatService::generateTask)
         .toList();
 
     log.info("<< Tasks successfully generated | transactionId={}", event.getTransactionId());
     saveTasksProducer.send(new SaveTasksEvent(
         event.getTransactionId(),
-        event.getUserId(),
+        event.getPlayerId(),
         generatedTasks
     ));
   }
