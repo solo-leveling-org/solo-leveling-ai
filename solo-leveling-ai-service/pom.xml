@@ -67,18 +67,6 @@
       <version>${aspectj.version}</version>
     </dependency>
 
-    <!-- kafka -->
-    <dependency>
-      <groupId>io.confluent</groupId>
-      <artifactId>kafka-avro-serializer</artifactId>
-      <version>${confluent-kafka.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.avro</groupId>
-      <artifactId>avro</artifactId>
-      <version>${avro.version}</version>
-    </dependency>
-
     <!-- tests -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
