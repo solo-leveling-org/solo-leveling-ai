@@ -50,7 +50,7 @@ public class ChatService {
 
   private SaveTask getTaskOrThrow(String json, GenerateTask generateTask) {
     try {
-      var task = objectMapper.readValue(json, SaveTask.class);
+      var task = objectMapper.readValue(parseJson(json), SaveTask.class);
       task.setTaskId(generateTask.getTaskId());
       task.setRarity(generateTask.getRarity());
       task.setTopics(generateTask.getTopics());
@@ -60,5 +60,17 @@ public class ChatService {
       log.error("Error while parsing json: {}", json);
       throw new IllegalArgumentException(e);
     }
+  }
+
+  private String parseJson(String json) {
+    if (json.startsWith("```json")) {
+      json = json.substring(7);
+    }
+
+    if (json.endsWith("```")) {
+      json = json.substring(0, json.length() - 3);
+    }
+
+    return json.trim();
   }
 }
