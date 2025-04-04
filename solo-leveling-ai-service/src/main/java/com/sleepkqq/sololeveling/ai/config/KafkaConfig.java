@@ -1,6 +1,6 @@
 package com.sleepkqq.sololeveling.ai.config;
 
-import static com.sleepkqq.sololeveling.avro.constants.KafkaGroupIds.TASK_GROUP_ID;
+import static com.sleepkqq.sololeveling.avro.constants.KafkaGroupIds.AI_GROUP_ID;
 
 import com.sleepkqq.sololeveling.avro.config.DefaultKafkaConfig;
 import com.sleepkqq.sololeveling.avro.task.GenerateTasksEvent;
@@ -39,7 +39,7 @@ public class KafkaConfig extends DefaultKafkaConfig {
 
   @Bean
   public ConsumerFactory<String, GenerateTasksEvent> consumerFactoryGenerateTasksEvent() {
-    return createConsumerFactory(TASK_GROUP_ID);
+    return createConsumerFactory(AI_GROUP_ID);
   }
 
   @Bean

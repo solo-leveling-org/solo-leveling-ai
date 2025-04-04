@@ -1,5 +1,8 @@
 package com.sleepkqq.sololeveling.ai.kafka;
 
+import static com.sleepkqq.sololeveling.avro.constants.KafkaGroupIds.AI_GROUP_ID;
+import static com.sleepkqq.sololeveling.avro.constants.KafkaTaskTopics.GENERATE_TASKS_TOPIC;
+
 import com.sleepkqq.sololeveling.ai.service.ChatService;
 import com.sleepkqq.sololeveling.avro.task.GenerateTasksEvent;
 import com.sleepkqq.sololeveling.avro.task.SaveTasksEvent;
@@ -17,7 +20,7 @@ public class GenerateTasksConsumer {
   private final ChatService chatService;
   private final SaveTasksProducer saveTasksProducer;
 
-  @KafkaListener(topics = "generate-tasks", groupId = "task-group")
+  @KafkaListener(topics = GENERATE_TASKS_TOPIC, groupId = AI_GROUP_ID)
   public void listen(GenerateTasksEvent event) {
     log.info(">> Start tasks generation | transactionId={}", event.getTransactionId());
     var generatedTasks = StreamEx.of(event.getInputs())
