@@ -20,9 +20,12 @@
 	</modules>
 
 	<properties>
-		<java.version>21</java.version>
-		<spring-ai.version>1.0.0-M6</spring-ai.version>
+		<java.version>24</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<spring-ai.version>1.0.0</spring-ai.version>
 		<aspectj.version>1.9.22.1</aspectj.version>
 		<streamex.version>0.8.3</streamex.version>
+		<lombok.version>1.18.38</lombok.version>
 	</properties>
 </project>
