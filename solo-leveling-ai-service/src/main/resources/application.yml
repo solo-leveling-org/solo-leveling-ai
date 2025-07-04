@@ -7,10 +7,10 @@ spring:
       schema.registry.url: http://${SERVER_HOST}:8081
   ai:
     openai:
-      api-key: ${CHAT_TOKEN}
-      base-url: https://api.deepseek.com
+      api-key: ${OPENROUTER_TOKEN}
+      base-url: https://openrouter.ai/api
       chat:
         options:
-          model: deepseek-chat
+          model: google/gemini-flash-1.5-8b
 server:
   port: 8089

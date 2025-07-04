@@ -1,14 +1,7 @@
-package com.sleepkqq.sololeveling.ai.prompt;
+package com.sleepkqq.sololeveling.ai.prompt
 
-import lombok.experimental.UtilityClass;
-
-@UtilityClass
-public class TaskPrompts {
-
-  public static final String GENERATE_TASK_PROMPT = """
-          TaskTopics: [%s]
-          TaskRarity: %s
-      
+object TaskPrompts {
+	const val GENERATE_TASK_SYSTEM_PROMPT: String = """
           На основе предоставленных топиков (TaskTopic) и редкости задачи (TaskRarity), сгенерируй задачу (Task) со следующими полями:
               title (название задачи),
               description (описание задачи, не более двух небольших предложений),
@@ -35,7 +28,7 @@ public class TaskPrompts {
               7. Задачи не должны быть похожи на детские игры или фантастические активности (например, "прогулка по воображаемому канату").
               Они должны быть реалистичными и полезными для улучшения физических, умственных или социальных навыков.
       
-          Формат вывода (выдавай ответ без тегов ```json):
+          Формат вывода:
           {
             "title": "Название задачи",
             "description": "Описание задачи",
@@ -44,5 +37,7 @@ public class TaskPrompts {
             "strength": 5,
             "intelligence": 1
           }
-      """;
+      """
+
+	const val GENERATE_TASK_USER_PROMPT = "TaskTopics: [%s], TaskRarity: %s"
 }

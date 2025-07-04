@@ -6,8 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.3</version>
-		<relativePath/>
+		<version>3.5.0</version>
 	</parent>
 
 	<groupId>com.sleepkqq</groupId>
@@ -23,9 +22,24 @@
 		<java.version>24</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<kotlin.version>2.2.0</kotlin.version>
+		<kotlin.code.style>official</kotlin.code.style>
+
 		<spring-ai.version>1.0.0</spring-ai.version>
 		<aspectj.version>1.9.22.1</aspectj.version>
-		<streamex.version>0.8.3</streamex.version>
-		<lombok.version>1.18.38</lombok.version>
+		<model-mapper.version>2.1.1</model-mapper.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>confluent</id>
+			<url>https://packages.confluent.io/maven/</url>
+		</repository>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/solo-leveling-org/solo-leveling-avro</url>
+		</repository>
+	</repositories>
 </project>
