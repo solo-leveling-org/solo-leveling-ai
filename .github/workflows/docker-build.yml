@@ -3,7 +3,7 @@ name: Build Docker Image with Maven
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
