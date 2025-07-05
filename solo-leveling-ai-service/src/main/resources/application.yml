@@ -14,3 +14,9 @@ spring:
           model: google/gemini-flash-1.5-8b
 server:
   port: 8089
+logging:
+  level:
+    org.apache.kafka.clients.consumer.ConsumerConfig: WARN
+    org.apache.kafka.clients.producer.ProducerConfig: WARN
+    io.confluent.kafka.serializers.KafkaAvroDeserializerConfig: WARN
+    io.confluent.kafka.serializers.KafkaAvroSerializerConfig: WARN
