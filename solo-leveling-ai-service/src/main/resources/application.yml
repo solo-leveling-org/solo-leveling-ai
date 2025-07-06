@@ -11,7 +11,7 @@ spring:
       base-url: https://openrouter.ai/api
       chat:
         options:
-          model: google/gemini-flash-1.5-8b
+          model: qwen/qwen3-14b
 server:
   port: 8086
 logging:
