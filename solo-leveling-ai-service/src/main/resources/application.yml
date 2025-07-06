@@ -2,9 +2,9 @@ spring:
   application:
     name: solo-leveling-ai
   kafka:
-    bootstrap-servers: ${SERVER_HOST}:9092
+    bootstrap-servers: localhost:9092
     properties:
-      schema.registry.url: http://${SERVER_HOST}:8081
+      schema.registry.url: http://localhost:8081
   ai:
     openai:
       api-key: ${OPENROUTER_TOKEN}
@@ -13,10 +13,15 @@ spring:
         options:
           model: google/gemini-flash-1.5-8b
 server:
-  port: 8089
+  port: 8086
 logging:
   level:
     org.apache.kafka.clients.consumer.ConsumerConfig: WARN
     org.apache.kafka.clients.producer.ProducerConfig: WARN
     io.confluent.kafka.serializers.KafkaAvroDeserializerConfig: WARN
     io.confluent.kafka.serializers.KafkaAvroSerializerConfig: WARN
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
