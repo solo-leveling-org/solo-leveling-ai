@@ -19,7 +19,7 @@ RUN mvn clean package -DskipTests --settings settings.xml
 FROM amazoncorretto:24-alpine3.21-jdk
 
 # Копируем собранный JAR и frontend
-COPY --from=build /usr/src/app/solo-leveling-notification-service/target/*.jar /app/solo-leveling-notification.jar
+COPY --from=build /usr/src/app/solo-leveling-ai-service/target/*.jar /app/solo-leveling-ai.jar
 
 # Безопасность: создаём пользователя
 RUN adduser -D myuser && \
