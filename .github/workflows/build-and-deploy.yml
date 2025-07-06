@@ -1,10 +1,10 @@
-name: Build Docker Image with Maven
+name: Build, Push and Deploy to Kubernetes
 
 on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: read
