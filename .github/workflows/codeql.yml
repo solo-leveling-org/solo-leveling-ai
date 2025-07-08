@@ -2,14 +2,13 @@ name: "CodeQL Advanced"
 
 on:
   pull_request:
-    branches-ignore: []
-
+    branches-ignore: [ ]
   workflow_dispatch:
 
 jobs:
   analyze:
-    name: Analyze (${{ matrix.language }})
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    name: Analyze (Java/Kotlin)
+    runs-on: ubuntu-latest
     permissions:
       security-events: write
       packages: read
@@ -51,6 +50,9 @@ jobs:
         with:
           java-version: '24'
           distribution: 'temurin'
+
+      - name: Set up Docker
+        uses: docker/setup-docker-action@v4
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
