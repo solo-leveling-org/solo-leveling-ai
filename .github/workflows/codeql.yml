@@ -30,7 +30,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Generate settings.xml in project root
-        if: matrix.language == 'java-kotlin'
         run: |
           cat <<EOF > ./settings.xml
           <?xml version="1.0" encoding="UTF-8"?>
