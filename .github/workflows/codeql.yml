@@ -2,7 +2,7 @@ name: "CodeQL Advanced"
 
 on:
   pull_request:
-    branches-ignore: []
+    branches-ignore: [ ]
   workflow_dispatch:
 
 jobs:
@@ -51,23 +51,8 @@ jobs:
           java-version: '24'
           distribution: 'temurin'
 
-      - name: Install Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker.io
-
-      - name: Start Docker daemon
-        run: |
-          sudo dockerd --daemon.json='{"hosts":["unix:///var/run/docker.sock"]}' > /tmp/docker.log 2>&1 &
-          sleep 5  # даем время на запуск
-
-      - name: Check Docker status
-        run: |
-          docker info
-
-      - name: Grant permission to Docker socket
-        run: |
-          sudo chmod 666 /var/run/docker.sock
+      - name: Set up Docker
+        uses: docker/setup-docker-action@v4
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
