@@ -20,8 +20,6 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: SERVER_HOST
-              value: "${SERVER_HOST}"
             - name: OPENROUTER_TOKEN
               value: "${OPENROUTER_TOKEN}"
           livenessProbe:
