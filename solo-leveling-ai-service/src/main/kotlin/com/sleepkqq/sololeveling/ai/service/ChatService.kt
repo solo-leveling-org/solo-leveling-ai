@@ -1,6 +1,6 @@
 package com.sleepkqq.sololeveling.ai.service
 
-import com.sleepkqq.sololeveling.ai.mapper.DtoMapper
+import com.sleepkqq.sololeveling.ai.mapper.AvroMapper
 import com.sleepkqq.sololeveling.ai.model.GenerateTaskResponse
 import com.sleepkqq.sololeveling.ai.prompt.TaskPrompts
 import com.sleepkqq.sololeveling.avro.task.GenerateTask
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service
 @Service
 class ChatService(
 	private val chatClient: ChatClient,
-	private val dtoMapper: DtoMapper
+	private val avroMapper: AvroMapper
 ) {
 
 	@Retryable(maxAttempts = 5, backoff = Backoff(delay = 1000))
@@ -24,6 +24,6 @@ class ChatService(
 			.entity(GenerateTaskResponse::class.java)
 			?: throw IllegalArgumentException("GenerateTaskResponse is null")
 
-		return dtoMapper.map(response, generateTask)
+		return avroMapper.map(response, generateTask)
 	}
 }
