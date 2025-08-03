@@ -28,7 +28,12 @@
 
 		<spring-ai.version>1.0.0</spring-ai.version>
 		<aspectj.version>1.9.22.1</aspectj.version>
-		<model-mapper.version>2.1.1</model-mapper.version>
+
+		<!-- mapstruct -->
+		<mapstruct.version>1.6.3</mapstruct.version>
+
+		<!-- solo leveling -->
+		<solo-leveling-avro.version>2.1.2</solo-leveling-avro.version>
 
 		<!-- tests -->
 		<test-containers.version>1.21.3</test-containers.version>
