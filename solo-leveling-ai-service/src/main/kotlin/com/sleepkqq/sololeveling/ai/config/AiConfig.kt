@@ -14,7 +14,7 @@ class AiConfig {
 	fun chatClient(builder: ChatClient.Builder): ChatClient = builder
 		.defaultOptions(
 			ChatOptions.builder()
-				.temperature(3.0)
+				.temperature(1.2)
 				.build()
 		)
 		.defaultSystem(TaskPrompts.GENERATE_TASK_SYSTEM_PROMPT)
