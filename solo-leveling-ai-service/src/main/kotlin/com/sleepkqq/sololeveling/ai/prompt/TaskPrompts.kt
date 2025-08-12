@@ -2,32 +2,33 @@ package com.sleepkqq.sololeveling.ai.prompt
 
 object TaskPrompts {
 	const val GENERATE_TASK_SYSTEM_PROMPT: String = """
-		На основе предоставленных топиков (TaskTopic) и редкости задачи (TaskRarity), сгенерируй задачу (Task) со следующими полями:
-				title (название задачи),
-				description (описание задачи, не более двух небольших предложений),
-				experience (количество опыта, кратное 10, от 10 до 100),
-				agility (ловкость, от 0 до 10),
-				strength (сила, от 0 до 10),
-				intelligence (интеллект, от 0 до 10).
+    Based on the provided topics (TaskTopic) and task rarity (TaskRarity), generate a task (Task) with the following fields:
+        title (task name),
+        description (task description, no more than two short sentences),
+        experience (amount of experience, a multiple of 10, from 10 to 100),
+        currencyReward (in-game currency reward, calculated as experience divided by 2),
+        agility (agility, from 0 to 10),
+        strength (strength, from 0 to 10),
+        intelligence (intelligence, from 0 to 10).
 
-		Условия:
-				1. Название и описание задачи должны соответствовать предоставленным топикам (TaskTopic).
-				2. Редкость задачи (TaskRarity) определяет:
-						- Опыт: COMMON (10-30), UNCOMMON (30-50), RARE (50-70), EPIC (70-90), LEGENDARY (90-100).
-						- Время выполнения: COMMON (5-30 минут), UNCOMMON (30-60 минут), RARE (1-2 часа), EPIC (2-4 часа), LEGENDARY (несколько часов, до конца дня).
-						- Максимум поинтов атрибутов: COMMON (2), UNCOMMON (4), RARE (6), EPIC (8), LEGENDARY (10).
-				3. Значения атрибутов (agility, strength, intelligence) должны строго зависеть от типа задачи:
-						- Если задача не подразумевает улучшение определённого атрибута, его значение должно быть 0.
-						- Сумма всех атрибутов не должна превышать максимум для редкости задачи.
-				4. Задачи должны быть выполнимыми для любого человека, независимо от его текущих условий.
-				5. Задачи должны быть креативными и разнообразными, но при этом не вызывать у пользователя чувства стыда, дискомфорта или неловкости.
-				6. Если задача относится к физической активности (PHYSICAL_ACTIVITY),
-				она должна быть реально полезной и направленной на улучшение физических характеристик пользователя.
-				Используй известные комплексы физических упражнений, такие как отжимания, приседания, бег, планка и другие.
-				Уровень сложности и количество повторений должны соответствовать редкости задачи.
-				7. Задачи не должны быть похожи на детские игры или фантастические активности (например, "прогулка по воображаемому канату").
-				Они должны быть реалистичными и полезными для улучшения физических, умственных или социальных навыков.
-      """
+    Conditions:
+        1. The task name and description must correspond to the provided topics (TaskTopic).
+        2. Task rarity (TaskRarity) determines:
+            - Experience: COMMON (10-20), UNCOMMON (30-40), RARE (50-60), EPIC (70-80), LEGENDARY (90-100).
+            - Completion time: COMMON (5-30 minutes), UNCOMMON (30-60 minutes), RARE (1-2 hours), EPIC (2-4 hours), LEGENDARY (several hours, up to the end of the day).
+            - Maximum attribute points: COMMON (2), UNCOMMON (4), RARE (6), EPIC (8), LEGENDARY (10).
+        3. Attribute values (agility, strength, intelligence) must strictly depend on the task type:
+            - If the task does not imply improvement of a specific attribute, its value must be 0.
+            - The sum of all attributes must not exceed the maximum for the task's rarity.
+        4. Tasks must be achievable by any person, regardless of their current conditions.
+        5. Tasks must be creative and diverse, but should not cause the user to feel shame, discomfort, or awkwardness.
+        6. If the task relates to physical activity (PHYSICAL_ACTIVITY),
+           it must be genuinely beneficial and aimed at improving the user's physical characteristics.
+           Use well-known exercise routines such as push-ups, squats, running, planks, and others.
+           The difficulty level and number of repetitions must correspond to the task's rarity.
+        7. Tasks must not resemble children's games or fantastical activities (e.g., "walking on an imaginary rope").
+           They must be realistic and useful for improving physical, mental, or social skills.
+	"""
 
 	const val GENERATE_TASK_USER_PROMPT = "TaskTopics: [%s], TaskRarity: %s"
 }
