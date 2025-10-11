@@ -64,7 +64,7 @@
     <dependency>
       <groupId>com.sleepkqq</groupId>
       <artifactId>solo-leveling-avro</artifactId>
-      <version>${solo-leveling-avro.version}</version>
+      <version>${solo-leveling-lib.version}</version>
     </dependency>
 
     <!-- utils -->

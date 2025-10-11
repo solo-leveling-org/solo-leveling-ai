@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.0</version>
+		<version>3.5.6</version>
 	</parent>
 
 	<groupId>com.sleepkqq</groupId>
@@ -26,14 +26,14 @@
 		<kotlin.version>2.2.0</kotlin.version>
 		<kotlin.code.style>official</kotlin.code.style>
 
-		<spring-ai.version>1.0.0</spring-ai.version>
+		<spring-ai.version>1.0.3</spring-ai.version>
 		<aspectj.version>1.9.22.1</aspectj.version>
 
 		<!-- mapstruct -->
 		<mapstruct.version>1.6.3</mapstruct.version>
 
 		<!-- solo leveling -->
-		<solo-leveling-avro.version>2.4.1</solo-leveling-avro.version>
+		<solo-leveling-lib.version>1.0.9</solo-leveling-lib.version>
 
 		<!-- tests -->
 		<test-containers.version>1.21.3</test-containers.version>
