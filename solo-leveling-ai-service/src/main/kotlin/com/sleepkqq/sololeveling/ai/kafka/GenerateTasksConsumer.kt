@@ -7,6 +7,7 @@ import com.sleepkqq.sololeveling.avro.task.GenerateTasksEvent
 import com.sleepkqq.sololeveling.avro.task.SaveTasksEvent
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.annotation.KafkaListener
+import org.springframework.kafka.support.Acknowledgment
 import org.springframework.stereotype.Service
 
 @Suppress("unused")
@@ -22,7 +23,7 @@ class GenerateTasksConsumer(
 		topics = [KafkaTaskTopics.GENERATE_TASKS_TOPIC],
 		groupId = KafkaGroupIds.AI_GROUP_ID
 	)
-	fun listen(event: GenerateTasksEvent) {
+	fun listen(event: GenerateTasksEvent, ack: Acknowledgment) {
 		log.info(">> Start tasks generation | transactionId={}", event.transactionId)
 		val generatedTasks = event.inputs.map { chatService.generateTask(it) }
 
@@ -34,5 +35,7 @@ class GenerateTasksConsumer(
 				generatedTasks
 			)
 		)
+
+		ack.acknowledge()
 	}
 }
