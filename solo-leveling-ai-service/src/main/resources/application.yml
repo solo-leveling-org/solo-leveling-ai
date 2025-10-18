@@ -2,7 +2,7 @@ spring:
   application:
     name: solo-leveling-ai
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: localhost:29092
     properties:
       schema.registry.url: http://localhost:8081
   ai:
@@ -13,7 +13,7 @@ spring:
         options:
           model: google/gemini-2.5-flash-lite
 server:
-  port: 8086
+  port: 10003
 logging:
   level:
     org.apache.kafka.clients.consumer.ConsumerConfig: WARN
