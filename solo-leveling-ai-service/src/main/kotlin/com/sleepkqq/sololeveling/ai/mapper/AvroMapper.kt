@@ -1,10 +1,10 @@
 package com.sleepkqq.sololeveling.ai.mapper
 
 import com.sleepkqq.sololeveling.ai.model.GenerateTaskResponse
-import com.sleepkqq.sololeveling.avro.task.Task
+import com.sleepkqq.sololeveling.avro.task.GenerateTask
+import com.sleepkqq.sololeveling.avro.task.SaveTask
 import org.mapstruct.CollectionMappingStrategy
 import org.mapstruct.Mapper
-import org.mapstruct.MappingTarget
 import org.mapstruct.NullValueCheckStrategy
 import org.mapstruct.NullValueMappingStrategy
 import org.mapstruct.ReportingPolicy
@@ -20,5 +20,5 @@ import org.springframework.stereotype.Component
 )
 abstract class AvroMapper {
 
-	abstract fun map(response: GenerateTaskResponse, @MappingTarget task: Task): Task
+	abstract fun map(response: GenerateTaskResponse, input: GenerateTask): SaveTask
 }

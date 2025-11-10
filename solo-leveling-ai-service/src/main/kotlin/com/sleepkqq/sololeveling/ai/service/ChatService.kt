@@ -3,7 +3,8 @@ package com.sleepkqq.sololeveling.ai.service
 import com.sleepkqq.sololeveling.ai.mapper.AvroMapper
 import com.sleepkqq.sololeveling.ai.model.GenerateTaskResponse
 import com.sleepkqq.sololeveling.ai.prompt.TaskPrompts
-import com.sleepkqq.sololeveling.avro.task.Task
+import com.sleepkqq.sololeveling.avro.task.GenerateTask
+import com.sleepkqq.sololeveling.avro.task.SaveTask
 import org.springframework.ai.chat.client.ChatClient
 import org.springframework.retry.annotation.Backoff
 import org.springframework.retry.annotation.Retryable
@@ -16,13 +17,13 @@ class ChatService(
 ) {
 
 	@Retryable(maxAttempts = 5, backoff = Backoff(delay = 1000))
-	fun generateTask(task: Task): Task {
+	fun generateTask(input: GenerateTask): SaveTask {
 		val response = chatClient.prompt()
-			.user(TaskPrompts.GENERATE_TASK_USER_PROMPT.format(task.topics, task.rarity))
+			.user(TaskPrompts.GENERATE_TASK_USER_PROMPT.format(input.topics, input.rarity))
 			.call()
 			.entity(GenerateTaskResponse::class.java)
 			?: throw IllegalArgumentException("GenerateTaskResponse is null")
 
-		return avroMapper.map(response, task)
+		return avroMapper.map(response, input)
 	}
 }
