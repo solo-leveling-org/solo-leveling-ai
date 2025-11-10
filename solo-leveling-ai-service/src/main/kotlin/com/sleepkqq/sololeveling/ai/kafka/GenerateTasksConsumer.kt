@@ -17,20 +17,20 @@ class GenerateTasksConsumer(
 	private val saveTasksProducer: SaveTasksProducer
 ) {
 
-	private val log = LoggerFactory.getLogger(GenerateTasksConsumer::class.java)
+	private val log = LoggerFactory.getLogger(javaClass)
 
 	@KafkaListener(
 		topics = [KafkaTaskTopics.GENERATE_TASKS_TOPIC],
 		groupId = KafkaGroupIds.AI_GROUP_ID
 	)
 	fun listen(event: GenerateTasksEvent, ack: Acknowledgment) {
-		log.info(">> Start tasks generation | transactionId={}", event.transactionId)
+		log.info(">> Start tasks generation | txId={}", event.txId)
 		val generatedTasks = event.inputs.map { chatService.generateTask(it) }
 
-		log.info("<< Tasks successfully generated | transactionId={}", event.transactionId)
+		log.info("<< Tasks successfully generated | txId={}", event.txId)
 		saveTasksProducer.send(
 			SaveTasksEvent(
-				event.transactionId,
+				event.txId,
 				event.playerId,
 				generatedTasks
 			)

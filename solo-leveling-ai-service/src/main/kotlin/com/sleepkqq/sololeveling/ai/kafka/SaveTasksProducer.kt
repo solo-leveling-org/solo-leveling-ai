@@ -11,10 +11,10 @@ class SaveTasksProducer(
 	private val kafkaTemplate: KafkaTemplate<String, SaveTasksEvent>
 ) {
 
-	private val log = LoggerFactory.getLogger(this::class.java)
+	private val log = LoggerFactory.getLogger(javaClass)
 
 	fun send(event: SaveTasksEvent) {
 		kafkaTemplate.send(KafkaTaskTopics.SAVE_TASKS_TOPIC, event)
-		log.info("<< Save tasks event sent | transactionId={}", event.transactionId)
+		log.info("<< Save tasks event sent | txId={}", event.txId)
 	}
 }
