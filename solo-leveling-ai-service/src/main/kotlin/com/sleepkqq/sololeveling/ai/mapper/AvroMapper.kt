@@ -5,6 +5,8 @@ import com.sleepkqq.sololeveling.avro.task.GenerateTask
 import com.sleepkqq.sololeveling.avro.task.SaveTask
 import org.mapstruct.CollectionMappingStrategy
 import org.mapstruct.Mapper
+import org.mapstruct.NullValueCheckStrategy
+import org.mapstruct.NullValueMappingStrategy
 import org.mapstruct.ReportingPolicy
 import org.springframework.stereotype.Component
 
@@ -12,7 +14,9 @@ import org.springframework.stereotype.Component
 @Mapper(
 	componentModel = "spring",
 	unmappedTargetPolicy = ReportingPolicy.IGNORE,
-	collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED
+	collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED,
+	nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT,
+	nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS
 )
 abstract class AvroMapper {
 

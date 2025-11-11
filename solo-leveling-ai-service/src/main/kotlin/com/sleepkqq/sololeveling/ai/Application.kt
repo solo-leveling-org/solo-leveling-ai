@@ -1,16 +1,11 @@
 package com.sleepkqq.sololeveling.ai
 
-import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
+import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class Application : SpringBootServletInitializer() {
+class Application
 
-	companion object {
-		@JvmStatic
-		fun main(args: Array<String>) {
-			SpringApplication.run(Application::class.java, *args)
-		}
-	}
+fun main(args: Array<String>) {
+	runApplication<Application>(*args)
 }
