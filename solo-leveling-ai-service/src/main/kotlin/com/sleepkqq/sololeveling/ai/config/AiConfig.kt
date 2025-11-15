@@ -6,7 +6,6 @@ import org.springframework.ai.chat.prompt.ChatOptions
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
-@Suppress("unused")
 @Configuration
 class AiConfig {
 
