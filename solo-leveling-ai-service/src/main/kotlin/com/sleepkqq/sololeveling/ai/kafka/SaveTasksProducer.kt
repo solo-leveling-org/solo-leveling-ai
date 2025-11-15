@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class SaveTasksProducer(
-	private val kafkaTemplate: KafkaTemplate<String, SaveTasksEvent>
+	private val kafkaTemplate: KafkaTemplate<String, Any>
 ) {
 
 	private val log = LoggerFactory.getLogger(javaClass)

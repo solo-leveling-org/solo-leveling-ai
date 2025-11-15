@@ -1,5 +1,5 @@
 # Build stage
-FROM maven:3.9.10-amazoncorretto-24-alpine AS build
+FROM maven:3.9.10-amazoncorretto-25-alpine AS build
 
 # Создаём пользователя для безопасности
 RUN adduser -D myuser && \
