@@ -16,7 +16,7 @@ COPY --chown=myuser:myuser . .
 RUN mvn clean package -DskipTests --settings settings.xml
 
 # Run stage
-FROM amazoncorretto:24-alpine3.21-jdk
+FROM amazoncorretto:25-alpine3.21-jdk
 
 # Копируем собранный JAR и frontend
 COPY --from=build /usr/src/app/solo-leveling-ai-service/target/*.jar /app/solo-leveling-ai.jar

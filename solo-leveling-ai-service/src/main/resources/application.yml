@@ -21,6 +21,9 @@ spring:
       lettuce:
         pool:
           max-active: 8
+  threads:
+    virtual:
+      enabled: true
 server:
   port: 10003
 logging:
